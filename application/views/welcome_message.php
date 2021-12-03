@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Selamat datang</title>
 
 	<style type="text/css">
 
@@ -73,6 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div id="body">
 		<p>Anda telah berhasil mendaftar</p>
 		<p><b> <u>Hubungi admin untuk dapat menakses halaman selanjutnya </u> </b></p>
+		<a href="<?php echo base_url('logout'); ?>">Keluar</a>
 
 
 </body>
