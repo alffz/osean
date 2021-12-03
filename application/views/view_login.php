@@ -50,10 +50,10 @@
       </form>
       <div class="text-center">
         <p class="mb-1">
-            <a href="forgot-password.html">Daftar pengguna baru</a>
+            <a href="<?= base_url('daftar')?>">Daftar pengguna baru</a>
         </p>
         <p class="mb-0">
-            <a href="register.html" class="text-center">Reset Password</a>
+            <a href="" class="text-center">Reset Password</a>
         </p>
       </div>
     </div>
