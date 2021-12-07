@@ -14,6 +14,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/adminlte.min.css">
 </head>
+<?php echo validation_errors(); ?>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
@@ -24,9 +25,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Masuk untuk memulai</p>
 
-      <form action="<?= base_url() ?>assets/index3.html" method="post">
+      <form  method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" name='email' placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +35,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name='password' placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

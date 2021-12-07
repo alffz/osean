@@ -7,8 +7,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function __construct() {
             parent::__construct();
             // $this->load->model('Tambah_model');
+            // form validation
+            $this->load->library('form_validation');
         }
 
+        // add anggota keluarga 
+        public function anggota() {
+            $this->form_validation->set_rules('nama', 'Nama', 'required');
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        }
         // tambah gang
         public function index() {
             $this->load->view('header');
