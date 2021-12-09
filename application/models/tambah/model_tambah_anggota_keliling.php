@@ -1,6 +1,6 @@
 <?php
 
-    class Anggota_keliling extends CI_Model {
+    class model_tambah_anggota_keliling extends CI_Model {
         
         public function insert_anggota() {
             $data = [

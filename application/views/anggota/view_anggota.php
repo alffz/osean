@@ -10,6 +10,7 @@
       <th scope="col">Nomor Hp</th>
       <th scope="col">Jumlah gang</th>
       <th scope="col">Jumlah langganan</th>
+      <th scope="col">langganan</th>
       <th scope="col">Gaji</th>
       <th scope="col">Status</th>
       <th scope="col">Aksi</th>
@@ -24,6 +25,9 @@
         <td><?= $row->nomor_hp; ?></td>
         <td><?= $row->jumlah_gang; ?></td>
         <td><?= $row->jumlah_langganan; ?></td>
+        <td>
+          <a href="<?= base_url('langganan/').$row->id_anggota_keliling ?>">langganan</a>
+        </td>
         <td><?= $row->gaji; ?></td>
         <td><?= $row->is_anggota_keliling_active; ?></td>
         <td>

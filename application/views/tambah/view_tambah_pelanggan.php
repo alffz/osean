@@ -8,10 +8,14 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
+            <div class="form-group">
+                    <label for="exampleInputEmail1">Anggota keliling</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Nama</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                </div>
+                </div>                
                     <label>Nomor Rumah</label>
                     <div class="form-group">
                     <select class="form-control">
