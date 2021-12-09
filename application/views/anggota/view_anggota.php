@@ -1,5 +1,7 @@
 <div class="container">
     <div class="row">
+      <!-- link -->
+      <a href="<?= base_url('tambah/anggota')?>" class=" m-3 btn btn-sm badge-primary">Tambah anggota</a>
     <table class="table">
   <thead>
     <tr>

@@ -7,7 +7,7 @@
             $this->load->library('form_validation');
             $this->load->model('edit/edit_anggota');
             $this->load->model('tambah/gang_model');
-            $this->load->model('edit/edit_gang_model');
+            $this->load->model('edit/model_edit_gang');
         }   
 
         public function anggota() {
@@ -37,21 +37,19 @@
         // edit gang
         public function gang() {
             // clean form
-            $this->form_validation->set_rules('anggota', 'Anggota', 'required');
             $this->form_validation->set_rules('nama', 'Nama Gang', 'required');
 
             // form validation
             if ($this->form_validation->run() == FALSE) {
                 $id_gang      = $this->uri->segment(3);
-                $data['gang'] = $this->edit_gang_model->get_gang_by_id($id_gang);
-                $data['anggota'] = $this->gang_model->get_anggota();
+                $data['gang'] = $this->gang_model->get_gang_by_id($id_gang);
                 $this->load->view('header');
                 $this->load->view('sidebar');
                 $this->load->view('edit/view_edit_gang',$data);
                 $this->load->view('footer');
             } else {
-                $this->edit_anggota->update_data_gang();
-                redirect('gang/');
+                $this->model_edit_gang->update_gang();
+                redirect('tambah/');
             }
         }
     }

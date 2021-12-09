@@ -65,7 +65,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Gang</th>
-                                <th>Anggota Keliling</th>
                                 <th>Pelanggan</th>
                                 <th>Aksi</th>
                             </tr>
@@ -76,7 +75,6 @@
                                 <tr>
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $g->nama_gang ?></td>
-                                    <td><?php echo $g->nama_anggota_keliling ?></td>
                                     <td>
                                         <a href="<?php echo base_url('pelanggan/'.$g->id_gang) ?>" class="btn btn-success btn-sm">Lihat pelanggan</a>
                                     </td>
