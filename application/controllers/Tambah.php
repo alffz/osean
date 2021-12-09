@@ -13,8 +13,12 @@ class Tambah extends CI_Controller {
         // form validation
         $this->load->library('form_validation');
     }
+    // default function
+    public function index() {
+        redirect('tambah/gang');
     
-
+    }
+    
     // add anggota keluarga 
     public function anggota() {
         // form validation
@@ -48,7 +52,7 @@ class Tambah extends CI_Controller {
         }
     }
     // tambah gang
-    public function index() {
+    public function gang() {
         // form validation
         $this->form_validation->set_rules("nama","Nama","required",[
             'required'          => "Kolom nama wajib diisi"
