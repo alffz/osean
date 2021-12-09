@@ -50,9 +50,6 @@ class Tambah extends CI_Controller {
     // tambah gang
     public function index() {
         // form validation
-        $this->form_validation->set_rules("anggota","gang","required",[
-            'required'          => "Kolom nama wajib diisi"
-        ]);
         $this->form_validation->set_rules("nama","Nama","required",[
             'required'          => "Kolom nama wajib diisi"
         ]);
