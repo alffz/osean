@@ -66,6 +66,7 @@
                                 <th>No</th>
                                 <th>Nama Gang</th>
                                 <th>Anggota Keliling</th>
+                                <th>Pelanggan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -77,8 +78,10 @@
                                     <td><?php echo $g->nama_gang ?></td>
                                     <td><?php echo $g->nama_anggota_keliling ?></td>
                                     <td>
-                                        <a href="<?php echo base_url('index.php/tambah/edit_gang/'.$g->id_gang) ?>" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<?php echo base_url('index.php/tambah/hapus_gang/'.$g->id_gang) ?>" class="btn btn-danger btn-sm">Hapus</a>
+                                        <a href="<?php echo base_url('pelanggan/'.$g->id_gang) ?>" class="btn btn-success btn-sm">Lihat pelanggan</a>
+                                    </td>
+                                    <td>
+                                        <a href="<?php echo base_url('edit/gang/'.$g->id_gang) ?>" class="btn btn-warning btn-sm">Edit</a>                                        
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -13,11 +13,24 @@
             $this->db->insert('gang', $data);
         }
 
-        // get all gang and join with anggota_keliling
+        // get gang by id
+        public function get_gang_by_id($id) {
+            $this->db->where('id_gang', $id);
+            $query = $this->db->get('gang');
+            return $query->row();
+        }
         public function get_gang() {
             $this->db->select('*');
             $this->db->from('gang');
             $this->db->join('anggota_keliling', 'gang.id_anggota_keliling = anggota_keliling.id_anggota_keliling');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        // get all anggota keliling
+        public function get_anggota() {
+            $this->db->select('*');
+            $this->db->from('anggota_keliling');
             $query = $this->db->get();
             return $query->result();
         }
