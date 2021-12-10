@@ -39,7 +39,7 @@
             $this->load->view('footer');
         }
 
-        function get_nomor_rumah()
+        function get_nomor_rumah() 
     {
         $list = $this->model_nomor_rumah->get_datatables();
         $data = array();
@@ -55,8 +55,8 @@
  
         $output = array(
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->User_model->count_all(),
-            "recordsFiltered" => $this->User_model->count_filtered(),
+            "recordsTotal" => $this->model_nomor_rumah->count_all(),
+            "recordsFiltered" => $this->model_nomor_rumah->count_filtered(),
             "data" => $data,
         );
         //output dalam format JSON
