@@ -49,7 +49,7 @@
                 $this->load->view('footer');
             } else {
                 $this->model_edit_gang->update_gang();
-                redirect('tambah/');
+                redirect('data/');
             }
         }
     }
