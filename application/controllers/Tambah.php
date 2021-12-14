@@ -10,8 +10,9 @@ class Tambah extends CI_Controller
         parent::__construct();
         $this->load->model('tambah/model_tambah_anggota_keliling');
         $this->load->model('tambah/gang_model');
-        $this->load->model('anggota/anggota_Model');
+        $this->load->model('tambah/model_tambah_pelanggan');
         $this->load->model('tambah/model_tambah_no_rumah');
+        $this->load->model('anggota/anggota_Model');
         $this->load->model('data/model_data_gang');
         $this->load->model('data/model_nomor_rumah');
         // form validation
@@ -98,29 +99,49 @@ class Tambah extends CI_Controller
     // tambah pelanggan
     public function pelanggan()
     {
-        $this->form_validation->set_rules("nama", "Nama", "required", [
-            'required'          => "Kolom nama wajib diisi"
+        $this->form_validation->set_rules("anggota", "Anggota Keliling", "required", [
+            'required'          => "Kolom Anggota keliling wajib diisi"
         ]);
-        $this->form_validation->set_rules("nomorhp", "Nomor Hp", "required", [
-            'required'          => "Kolom nama wajib diisi"
+        $this->form_validation->set_rules("nama_pelanggan", "Nama Pelanggan", "required", [
+            'required'          => "Kolom Nama Pelanggan wajib diisi"
+        ]);
+        $this->form_validation->set_rules("nomor_rumah", "Nomor Rumah", "required", [
+            'required'          => "Kolom Nomor Rumah wajib diisi"
+        ]);
+        $this->form_validation->set_rules("nomor_hp", "Nomor Hp", "required", [
+            'required'          => "Kolom Nomor Hp wajib diisi"
         ]);
         $this->form_validation->set_rules("gang", "Gang", "required", [
-            'required'          => "Kolom nama wajib diisi"
+            'required'          => "Kolom Gang wajib diisi"
         ]);
-        $this->form_validation->set_rules("langganan", "Langgangn", "required", [
-            'required'          => "Kolom nama wajib diisi"
+        $this->form_validation->set_rules("harga", "Harga", "required", [
+            'required'          => "Kolom Harga wajib diisi"
         ]);
-        $this->form_validation->set_rules("gaji", "Gaji", "required", [
-            'required'          => "Kolom nama wajib diisi"
+        $this->form_validation->set_rules("galon", "Galon", "required", [
+            'required'          => "Kolom Galon wajib diisi"
+        ]);
+        $this->form_validation->set_rules("anggota_keluarga", "Anggota Keluarga", "required", [
+            'required'          => "Kolom Anggota Keluarga wajib diisi"
+        ]);
+        $this->form_validation->set_rules("status_rumah", "Status rumah", "required", [
+            'required'          => "Kolom Status rumah wajib diisi"
         ]);
         $data   = [
-            'anggota_keliling'  => $this->anggota_Model->get_data_anggota(),
+            'anggota'           => $this->anggota_Model->get_data_anggota(),
             'gang'              => $this->model_data_gang->list_gang(),
-            'nomor_rumah'       => $this->model_nomor_rumah->_get_datatables_query(),
+            'nomor_rumah'       => $this->model_nomor_rumah->nomor_rumah(),
         ];
-        $this->load->view('header');
-        $this->load->view('sidebar');
-        $this->load->view('tambah/view_tambah_pelanggan.php', $data);
-        $this->load->view('footer');
+        // run
+        if ($this->form_validation->run() == false) {
+            $this->load->view('header');
+            $this->load->view('sidebar');
+            $this->load->view('tambah/view_tambah_pelanggan.php', $data);
+            $this->load->view('footer');
+        } else {
+            $this->model_tambah_pelanggan->insert_pelanggan();
+            echo 'berhasil';
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
+            redirect('tambah/pelanggan');
+        }
     }
 }
