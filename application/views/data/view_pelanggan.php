@@ -1,37 +1,50 @@
-<!-- bootstrp table -->
-<a href="<?= base_url('tambah/pelanggan')?>" class="btn btn-success btn-sm m-3">Tambah pelanggan</a>
-<!-- table bootstrap -->
-<div class="table-responsive m-3">
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Anggota keliling</th>
-                <th>gang</th>
-                <th>Nama pelanggang</th>
-                <th>Nomor rumah</th>
-                <th>harga</th>
-                <th>Jumlah galon</th>
-                <th>Jumlah keluarga</th>
-                <th>status rumah</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $no = 1;
-            foreach ($pelanggan as $g) {
-                ?>
+<!-- call css -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="<?php echo base_url('assets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css') ?>">
+
+<!-- C:\xampp\htdocs\osean\assets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css -->
+<a href="<?php echo site_url('tambah/nomor_rumah') ?>" class="btn btn-primary m-3">tambah nomor rumah</a>
+
+<script src="<?php echo base_url('assets\plugins\jquery\jquery.min.js') ?>"></script>
+<div class="container">
+    <div class="row">
+        <table id="table" class="table m-3" cellspacing="0" width="100%">
+            <thead>
                 <tr>
-                    <td><?php echo $no; ?></td>
-                    <td><?php echo $g->nama_gang; ?></td>
-                    <td>
-                        <a href="<?php echo base_url(); ?>edit/gang/<?php echo $g->id_gang; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                        <a href="<?php echo base_url(); ?>data/gang/langganan/<?php echo $g->id_gang; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Langganan</a>
-                    </td>
+                    <th>No</th>
+                    <th>Anggota</th>
+                    <th>Gang</th>
+                    <th>Pelanggan</th>
+                    <th>Nomor rumah</th>
+                    <th>Harga</th>
+                    <th>Jumlah galon</th>
+                    <th>Jumlah Keluarga</th>
+                    <th>Status rumah</th>
+                    <th>Aksi</th>
                 </tr>
-                <?php
-                $no++;
-            }
-            ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="<?php echo base_url('assets\plugins\datatables\jquery.dataTables.js') ?>"></script>
+    <script src="<?php echo base_url('assets\plugins\datatables-bs4\js\dataTables.bootstrap4.min.js') ?>"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //datatables
+            $('#table').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "order": [],
+                "ajax": {
+                    "url": "<?php echo base_url('datatable/get_pelanggan') ?>",
+                    "type": "POST"
+                },
+
+            });
+
+        });
+    </script>
+</div>
+</div>
