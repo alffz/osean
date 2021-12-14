@@ -25,10 +25,9 @@
 
         // data pelanggan
         public function pelanggan() {
-            $data['pelanggan'] = $this->model_data_pelanggan->list_pelanggan();
             $this->load->view('header');
             $this->load->view('sidebar');
-            $this->load->view('data/view_pelanggan', $data);
+            $this->load->view('data/view_pelanggan');
             $this->load->view('footer');
         }
 
