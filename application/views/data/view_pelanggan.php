@@ -8,14 +8,15 @@
 <script src="<?php echo base_url('assets\plugins\jquery\jquery.min.js') ?>"></script>
 <div class="container">
     <div class="row">
-        <table id="table" class="table m-3" cellspacing="0" width="100%">
+        <table id="table" class="table  m-3" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Anggota</th>
+                    <th>Anggota keliling</th>
                     <th>Gang</th>
                     <th>Pelanggan</th>
                     <th>Nomor rumah</th>
+                    <th>Nomor hp</th>
                     <th>Harga</th>
                     <th>Jumlah galon</th>
                     <th>Jumlah Keluarga</th>
