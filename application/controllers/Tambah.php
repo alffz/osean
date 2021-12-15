@@ -28,7 +28,6 @@ class Tambah extends CI_Controller
     public function anggota()
     {
         // form validation
-
         $this->form_validation->set_rules("nama", "Nama", "required", [
             'required'          => "Kolom nama wajib diisi"
         ]);
