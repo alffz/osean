@@ -14,6 +14,9 @@ class model_data_pelanggan extends CI_Model
 
         $this->db->select('*');
         $this->db->from($this->table);
+        $this->db->join('gang', 'pelanggan.id_gang = gang.id_gang');
+        $this->db->join('anggota_keliling', 'pelanggan.id_anggota_keliling = anggota_keliling.id_anggota_keliling');
+        $this->db->join('nomor_rumah', 'pelanggan.id_nomor_rumah = nomor_rumah.id_nomor_rumah');
         $i = 0;
         foreach ($this->column_search as $item) { // looping awal        
             if (@$_POST['search']['value']) { // jika datatable mengrimkan pencarian dengan metode POST 
