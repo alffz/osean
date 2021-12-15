@@ -8,8 +8,10 @@ class Datatable extends CI_Controller
         parent::__construct();
         $this->load->model('data/model_nomor_rumah');
         $this->load->model('data/model_data_pelanggan');
+        $this->load->model('data/model_data_anggota_keliling');
     }
 
+    // data nomor rumah
     function get_nomor_rumah()
     {
         $list = $this->model_nomor_rumah->get_datatables();
@@ -34,7 +36,7 @@ class Datatable extends CI_Controller
         echo json_encode($output);
     }
 
-    // pelanggan
+    // data pelanggan
     public function get_pelanggan()
     {
         $list = $this->model_data_pelanggan->get_datatables();
@@ -63,6 +65,38 @@ class Datatable extends CI_Controller
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->model_data_pelanggan->count_all(),
             "recordsFiltered" => $this->model_data_pelanggan->count_filtered(),
+            "data" => $data,
+        );
+        //output dalam format JSON
+        echo json_encode($output);
+    }
+
+    // data anggota keliling
+    public function get_anggota_keliling()
+    {
+        $list = $this->model_data_anggota_keliling->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nama_anggota_keliling;
+            $row[] = $field->nomor_hp;
+            $row[] = $field->jumlah_gang;
+            $row[] = $field->jumlah_langganan;
+            $row[] = $field->gaji;
+            $row[] = $field->is_anggota_keliling_active;
+            // anchor
+            $row[] = '<a class="btn btn-sm btn-primary" href="../edit/anggota_keliling/' . $field->id_anggota_keliling . '"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->model_data_anggota_keliling->count_all(),
+            "recordsFiltered" => $this->model_data_anggota_keliling->count_filtered(),
             "data" => $data,
         );
         //output dalam format JSON
