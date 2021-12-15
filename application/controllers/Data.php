@@ -42,4 +42,13 @@ class Data extends CI_Controller
         $this->load->view('data/view_nomor_rumah_copy');
         $this->load->view('footer');
     }
+
+    // anggota keliling
+    public function anggota()
+    {
+        $this->load->view('header');
+        $this->load->view('sidebar');
+        $this->load->view('data/view_anggota_keliling');
+        $this->load->view('footer');
+    }
 }
