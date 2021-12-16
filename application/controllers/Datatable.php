@@ -56,7 +56,8 @@ class Datatable extends CI_Controller
             $row[] = $field->jumlah_keluarga;
             $row[] = $field->status_rumah;
             // anchor
-            $row[] = '<a class="btn btn-sm btn-primary" href="../edit/pelanggan/' . $field->id_pelanggan . '"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+            $row[] = '<a class="btn btn-sm btn-primary" href="../edit/pelanggan/' . $field->id_pelanggan . '"><i class="glyphicon glyphicon-pencil"></i> Edit</a>' .
+                '<a class="btn btn-sm btn-success" href="../data/transaksi/' . $field->id_anggota_keliling . '"><i class="glyphicon glyphicon-pencil"></i> transaksi</a>';
 
             $data[] = $row;
         }
@@ -88,7 +89,7 @@ class Datatable extends CI_Controller
             $row[] = $field->gaji;
             $row[] = $field->is_anggota_keliling_active;
             // anchor
-            $row[] = '<a class="btn btn-sm btn-primary" href="../edit/anggota_keliling/' . $field->id_anggota_keliling . '"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
+            $row[] = '<a class="btn btn-sm btn-primary" href="../edit/anggota/' . $field->id_anggota_keliling . '"><i class="glyphicon glyphicon-pencil"></i> Edit</a>';
 
             $data[] = $row;
         }
