@@ -28,7 +28,7 @@
 
         // tampilkan user yang user menu == user_access_menu.role_menu
         // join user_menu and user_access_menu
-        $user_menu = $this->db->query("SELECT menu,icon
+        $user_menu = $this->db->query("SELECT menu,icon,user_menu.role_menu
                                       FROM `user_menu` inner JOIN `user_access_menu`
                                       ON `user_menu`.`role_menu` = `user_access_menu`.`role_menu`
                                       WHERE `user_access_menu`.`role_access` = $role_id
@@ -44,15 +44,21 @@
               </p>
             </a>
             <!-- loop user sub menu -->
-            <?php ?>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Hak akses</p>
-                </a>
-              </li>
-            </ul>
+            <?php
+            // select user_sub_menu where id_menu = $menu['id_menu']
+            $user_sub_menu = $this->db->query("SELECT * from user_sub_menu where role_menu = $menu[role_menu]")->result_array();
+            foreach ($user_sub_menu as $sub_menu) {
+            ?>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?php echo base_url($sub_menu['url'])  ?>" class="nav-link active">
+                    <i class="<?php echo ($sub_menu['icon'])  ?>"></i>
+                    <p><?php echo ($sub_menu['judul'])  ?></p>
+                  </a>
+                </li>
+              </ul>
+              <!-- end foreach $user_sub_menu -->
+            <?php } ?>
           </li>
           <!-- endforeach $user_menu -->
         <?php  } ?>
