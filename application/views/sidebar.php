@@ -18,6 +18,10 @@
       </div>
     </div>
 
+    <div class="text">
+      <a href="<?php echo base_url('logout'); ?>" class="brand-link">
+        <span class="brand-text font-weight-light">Logout</span> </a>
+    </div>
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
