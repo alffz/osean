@@ -7,37 +7,51 @@ class Edit extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('edit/edit_anggota');
         $this->load->model('edit/model_edit_pelanggan');
+        $this->load->model('edit/model_edit_anggota');
         $this->load->model('tambah/gang_model');
         $this->load->model('edit/model_edit_gang');
         $this->load->model('anggota/anggota_Model');
         $this->load->model('data/model_data_gang');
         $this->load->model('data/model_nomor_rumah');
         $this->load->model('data/model_data_pelanggan');
+        $this->load->model('data/model_data_anggota_keliling');
     }
 
     public function anggota()
     {
-        // clean form
-        $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('nomorhp', 'Nomor Hp', 'required');
-        $this->form_validation->set_rules('gang', 'Gang', 'required');
-        $this->form_validation->set_rules('langganan', 'Langganan', 'required');
-        $this->form_validation->set_rules('gaji', 'Gaji', 'required');
-
         // form validation
+        $this->form_validation->set_rules("nama", "Nama", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $this->form_validation->set_rules("nomorhp", "Nomor Hp", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $this->form_validation->set_rules("gang", "Gang", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $this->form_validation->set_rules("langganan", "Langgangn", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $this->form_validation->set_rules("gaji", "Gaji", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $id = $this->uri->segment(3);
+
         if ($this->form_validation->run() == FALSE) {
-            $id     = $this->uri->segment(3);
-            $id_anggota = base64_decode($id);
-            $data['anggota'] = $this->edit_anggota->get_anggota_by_id($id_anggota);
+            $data     = array(
+                'title'     => 'Edit anggota keliling',
+                'anggota'   => $this->model_data_anggota_keliling->get_data_anggota(),
+            );
+            // load view
             $this->load->view('header');
             $this->load->view('sidebar');
             $this->load->view('edit/view_edit_anggota_keliling', $data);
             $this->load->view('footer');
         } else {
-            $this->edit_anggota->update_data_anggota();
-            redirect('anggota/');
+            $this->model_edit_anggota->update_data_anggota($id);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
+            redirect('data/anggota');
         }
     }
 
