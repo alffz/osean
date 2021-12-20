@@ -60,4 +60,15 @@ class model_data_anggota_keliling extends CI_Model
     $this->db->from($this->table);
     return $this->db->count_all_results();
   }
+
+  // select anggota keliilng where id
+  public function get_data_anggota()
+  {
+    $id_anggota_keliling  = $this->uri->segment(3);
+    $this->db->from($this->table);
+    $this->db->where('id_anggota_keliling', $id_anggota_keliling);
+    $query = $this->db->get();
+
+    return $query->row();
+  }
 }
