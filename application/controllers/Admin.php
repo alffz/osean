@@ -15,7 +15,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data   = [
-            'user' => $this->model_data_user->get_user_by_session(),
+            'user_loged' => $this->model_data_user->get_user_by_session(),
         ];
         $this->load->view('header');
         $this->load->view('sidebar', $data);
@@ -26,9 +26,12 @@ class Admin extends CI_Controller
     // user data
     public function user()
     {
-        $data['user'] = $this->model_data_user->get_user();
+        $data   = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+            'user'       => $this->model_data_user->get_user(),
+        ];
         $this->load->view('header');
-        $this->load->view('sidebar');
+        $this->load->view('sidebar', $data);
         $this->load->view('data/view_data_user', $data);
         $this->load->view('footer');
     }
@@ -40,10 +43,13 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('userActive', 'Aktifasi', 'required', [
             'required'      => 'Kolom Aktifasi user wajib diisi',
         ]);
-        $data['user'] = $this->model_data_user->get_user_by_id();
+        $data   = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+            'user'       => $this->model_data_user->get_user_by_id(),
+        ];
         if ($this->form_validation->run() == false) {
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('Admin/view_user_activ', $data);
             $this->load->view('footer');
         } else {
