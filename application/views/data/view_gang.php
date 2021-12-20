@@ -1,5 +1,5 @@
 <!-- link add gang -->
-<a href="<?= base_url('tambah/gang')?>" class="btn btn-success btn-sm m-3">Tambah gang</a>
+<a href="<?= base_url('tambah/gang') ?>" class="btn btn-success btn-sm m-3">Tambah gang</a>
 <!-- table bootstrap -->
 <div class="table-responsive m-3">
     <table class="table table-bordered table-hover table-striped">
@@ -14,7 +14,7 @@
             <?php
             $no = 1;
             foreach ($gang as $g) {
-                ?>
+            ?>
                 <tr>
                     <td><?php echo $no; ?></td>
                     <td><?php echo $g->nama_gang; ?></td>
@@ -23,9 +23,14 @@
                         <a href="<?php echo base_url(); ?>data/gang/langganan/<?php echo $g->id_gang; ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Langganan</a>
                     </td>
                 </tr>
-                <?php
+            <?php
                 $no++;
             }
             ?>
         </tbody>
     </table>
+
+    <?php
+    $data   = $this->session->userdata();
+    var_dump($this->session->userdata());
+    echo $_SESSION['role_id'] ?>
