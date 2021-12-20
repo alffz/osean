@@ -43,11 +43,13 @@ class Tambah extends CI_Controller
         $this->form_validation->set_rules("gaji", "Gaji", "required", [
             'required'          => "Kolom nama wajib diisi"
         ]);
-
+        $data = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+        ];
         if ($this->form_validation->run() == FALSE) {
             // load view
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('tambah/view_tambah_anggota_keliling');
             $this->load->view('footer');
         } else {
@@ -64,10 +66,13 @@ class Tambah extends CI_Controller
             'required'          => "Kolom nama wajib diisi"
         ]);
         if ($this->form_validation->run() == FALSE) {
-            $data['anggota'] = $this->anggota_Model->get_data_anggota();
-            $data['gang'] = $this->gang_model->get_gang();
+            $data = [
+                'user_loged' => $this->model_data_user->get_user_by_session(),
+                'anggota'    => $this->anggota_Model->get_data_anggota(),
+                'gang'       => $this->gang_model->get_gang(),
+            ];
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('tambah/view_tambah_gang.php', $data);
             $this->load->view('footer');
         } else {
@@ -83,9 +88,12 @@ class Tambah extends CI_Controller
         $this->form_validation->set_rules("nomorRumah", "Nomor Rumah", "required", [
             'required'          => "Kolom nama wajib diisi"
         ]);
+        $data = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+        ];
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('tambah/view_tambah_nomor_rumah.php');
             $this->load->view('footer');
         } else {
@@ -129,11 +137,12 @@ class Tambah extends CI_Controller
             'anggota'           => $this->anggota_Model->get_data_anggota(),
             'gang'              => $this->model_data_gang->list_gang(),
             'nomor_rumah'       => $this->model_nomor_rumah->nomor_rumah(),
+            'user_loged'        => $this->model_data_user->get_user_by_session(),
         ];
         // run
         if ($this->form_validation->run() == false) {
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('tambah/view_tambah_pelanggan.php', $data);
             $this->load->view('footer');
         } else {
