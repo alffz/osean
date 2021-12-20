@@ -14,7 +14,7 @@
         <img src="<?= base_url('assets\dist\air.jpg') ?>" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="" class="d-block"><?= $user->nama_user  ?></a>
+        <a href="" class="d-block"><?= $user_loged->nama_user  ?></a>
       </div>
     </div>
 
