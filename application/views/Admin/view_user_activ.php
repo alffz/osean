@@ -11,12 +11,12 @@
         <div class="card-body">
           <div class="form-group">
             <label for="name">Nama</label>
-            <input type="text" name='nama' value="<?php echo $user->nama_user ?>" class="form-control">
+            <input type="text" disabled name='nama' value="<?php echo $user->nama_user ?>" class="form-control">
           </div>
           <div class="form-group">
             <label for="userActive">Aktivasi user</label><br>
             <small>1 = Aktif</small>
-            <input type="number" name='userActiv' value="<?php echo $user->is_user_active ?>" class="form-control">
+            <input type="number" name='userActive' value="<?php echo $user->is_user_active ?>" class="form-control">
           </div>
         </div>
         <!-- /.card-body -->
