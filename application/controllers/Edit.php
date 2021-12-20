@@ -36,12 +36,14 @@ class Edit extends CI_Controller
         $this->form_validation->set_rules("gaji", "Gaji", "required", [
             'required'          => "Kolom nama wajib diisi"
         ]);
+
         $id = $this->uri->segment(3);
 
         if ($this->form_validation->run() == FALSE) {
             $data     = array(
-                'title'     => 'Edit anggota keliling',
-                'anggota'   => $this->model_data_anggota_keliling->get_data_anggota(),
+                'title'      => 'Edit anggota keliling',
+                'anggota'    => $this->model_data_anggota_keliling->get_data_anggota(),
+                'user_loged' => $this->model_data_user->get_user_by_session(),
             );
             // load view
             $this->load->view('header');
@@ -64,9 +66,12 @@ class Edit extends CI_Controller
         // form validation
         if ($this->form_validation->run() == FALSE) {
             $id_gang      = $this->uri->segment(3);
-            $data['gang'] = $this->gang_model->get_gang_by_id($id_gang);
+            $data         = [
+                'gang'       => $this->gang_model->get_gang_by_id($id_gang),
+                'user_loged' => $this->model_data_user->get_user_by_session()
+            ];
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('edit/view_edit_gang', $data);
             $this->load->view('footer');
         } else {
@@ -111,11 +116,12 @@ class Edit extends CI_Controller
             'gang'              => $this->model_data_gang->list_gang(),
             'nomor_rumah'       => $this->model_nomor_rumah->nomor_rumah(),
             'pelanggan'         => $this->model_data_pelanggan->pelanggan(),
+            'user_loged'        => $this->model_data_user->get_user_by_session()
         ];
         // form validation
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('edit/view_edit_pelanggan', $data);
             $this->load->view('footer');
         } else {
