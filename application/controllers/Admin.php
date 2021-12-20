@@ -33,10 +33,19 @@ class Admin extends CI_Controller
     // edit user
     public function edit_user($id)
     {
+
+        $this->form_validation->set_rules('userActive', 'Aktifasi', 'required', [
+            'required'      => 'Kolom Aktifasi user wajib diisi',
+        ]);
         $data['user'] = $this->model_data_user->get_user_by_id();
-        $this->load->view('header');
-        $this->load->view('sidebar');
-        $this->load->view('Admin/view_user_activ', $data);
-        $this->load->view('footer');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('header');
+            $this->load->view('sidebar');
+            $this->load->view('Admin/view_user_activ', $data);
+            $this->load->view('footer');
+        } else {
+            $this->model_data_user->edit_user();
+            redirect('admin/user');
+        }
     }
 }
