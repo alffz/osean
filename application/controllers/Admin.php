@@ -14,9 +14,12 @@ class Admin extends CI_Controller
     // loop user and activation for admin
     public function index()
     {
+        $data   = [
+            'user' => $this->model_data_user->get_user_by_session(),
+        ];
         $this->load->view('header');
-        $this->load->view('sidebar');
-        $this->load->view('admin/view_admin');
+        $this->load->view('sidebar', $data);
+        $this->load->view('admin/view_admin', $data);
         $this->load->view('footer');
     }
 
