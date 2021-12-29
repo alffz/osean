@@ -71,4 +71,13 @@ class model_data_anggota_keliling extends CI_Model
 
     return $query->row();
   }
+
+  // get all anggota keliilng
+  public function get_all_data_anggota()
+  {
+    $this->db->from($this->table);
+    $query = $this->db->get();
+
+    return $query->result();
+  }
 }
