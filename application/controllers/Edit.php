@@ -47,7 +47,7 @@ class Edit extends CI_Controller
             );
             // load view
             $this->load->view('header');
-            $this->load->view('sidebar');
+            $this->load->view('sidebar', $data);
             $this->load->view('edit/view_edit_anggota_keliling', $data);
             $this->load->view('footer');
         } else {
