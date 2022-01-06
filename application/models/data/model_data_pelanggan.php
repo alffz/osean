@@ -77,4 +77,43 @@ class model_data_pelanggan extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
+
+    // get all data pelanggan
+    function get_all_pelanggan()
+    {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->join('gang', 'pelanggan.id_gang = gang.id_gang');
+        $this->db->join('anggota_keliling', 'pelanggan.id_anggota_keliling = anggota_keliling.id_anggota_keliling');
+        $this->db->join('nomor_rumah', 'pelanggan.id_nomor_rumah = nomor_rumah.id_nomor_rumah');
+        $this->db->order_by('urutan_gang', 'asc');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    // get pelanggan by id
+    function get_pelanggan_by_id($id)
+    {
+        $this->db->select('*')
+            ->from($this->table)
+            ->join('gang', 'pelanggan.id_gang = gang.id_gang')
+            ->join('anggota_keliling', 'pelanggan.id_anggota_keliling = anggota_keliling.id_anggota_keliling')
+            ->join('nomor_rumah', 'pelanggan.id_nomor_rumah = nomor_rumah.id_nomor_rumah')
+            ->where('id_pelanggan', $id);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    // get pelanggan by gang
+    function get_pelanggan_by_gang($id)
+    {
+        $id_gang = $this->input->post('id_gang');
+        $this->db->select('nama_gang,nama_pelanggan,pelanggan.id_pelanggan,anggota_keliling.id_anggota_keliling,nama_anggota_keliling')
+            ->from($this->table)
+            ->join('gang', 'pelanggan.id_gang = gang.id_gang')
+            ->join('anggota_keliling', 'pelanggan.id_anggota_keliling = anggota_keliling.id_anggota_keliling')
+            ->where('gang.id_gang', $id_gang);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

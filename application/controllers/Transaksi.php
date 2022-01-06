@@ -13,6 +13,7 @@ class transaksi extends CI_Controller
     $this->load->model('transaksi/model_penjualan');
     $this->load->model('data/model_data_anggota_keliling');
     $this->load->model('data/model_data_pelanggan');
+    $this->load->model('data/model_data_gang');
   }
   // buat element transaksi berapa orang
   public function element()
@@ -134,13 +135,15 @@ class transaksi extends CI_Controller
         'user_loged' => $this->model_data_user->get_user_by_session(),
         'anggota'    => $this->model_data_anggota_keliling->get_all_data_anggota(),
         'pelanggan'  => $this->model_data_pelanggan->get_pelanggan_by_id($id_pelanggan),
+        'gang'       => $this->model_data_gang->list_gang(),
       ];
       $this->load->view('header');
       $this->load->view('sidebar', $data);
       $this->load->view('transaksi/view_penjualan', $data);
       $this->load->view('footer');
     } else {
-      $this->model_penjualan->insert_penjualan();
+      $data['pelanggan'] = $this->model_data_pelanggan->get_pelanggan_by_id($id_pelanggan);
+      $this->model_penjualan->insert_penjualan($data['pelanggan']);
       redirect('transaksi');
     }
   }

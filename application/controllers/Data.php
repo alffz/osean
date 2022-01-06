@@ -63,4 +63,16 @@ class Data extends CI_Controller
         $this->load->view('data/view_anggota_keliling');
         $this->load->view('footer');
     }
+
+    // hadiah
+    function hadiah()
+    {
+        $data   = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+        ];
+        $this->load->view('header');
+        $this->load->view('sidebar', $data);
+        $this->load->view('data/view_hadiah');
+        $this->load->view('footer');
+    }
 }

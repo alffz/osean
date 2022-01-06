@@ -1,6 +1,8 @@
 <!-- call css -->
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="<?php echo base_url('assets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css') ?>">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js">
+
 
 <!-- C:\xampp\htdocs\osean\assets\plugins\datatables-bs4\css\dataTables.bootstrap4.min.css -->
 <a href="<?php echo site_url('tambah/pelanggan') ?>" class="btn btn-primary m-3">tambah nomor rumah</a>
@@ -49,13 +51,27 @@
     $(document).ready(function() {
         //datatables
         $('#table').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "order": [],
-            "ajax": {
+            autofill: true,
+            processing: true,
+            serverSide: true,
+            select: true,
+            columnDefs: [{
+                orderable: false,
+                className: 'select-checkbox',
+                targets: 0
+            }],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
+            order: [
+                [1, 'asc']
+            ],
+            ajax: {
                 "url": "<?php echo base_url('datatable/get_pelanggan') ?>",
                 "type": "POST"
             },
+
 
         });
 

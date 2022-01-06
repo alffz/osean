@@ -47,6 +47,10 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Transksi</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link"><?php $keranjan = $this->cart->total_items();
+                                        echo $keranjan ?></a>
+        </li>
       </ul>
     </nav>
     <!-- /.navbar -->

@@ -9,6 +9,7 @@ class Edit extends CI_Controller
         $this->load->library('form_validation');
         $this->load->model('edit/model_edit_pelanggan');
         $this->load->model('edit/model_edit_anggota');
+        $this->load->model('edit/model_edit_hadiah');
         $this->load->model('tambah/gang_model');
         $this->load->model('edit/model_edit_gang');
         $this->load->model('anggota/anggota_Model');
@@ -16,6 +17,7 @@ class Edit extends CI_Controller
         $this->load->model('data/model_nomor_rumah');
         $this->load->model('data/model_data_pelanggan');
         $this->load->model('data/model_data_anggota_keliling');
+        $this->load->model('data/model_data_hadiah');
     }
 
     public function anggota()
@@ -127,6 +129,30 @@ class Edit extends CI_Controller
         } else {
             $this->model_edit_pelanggan->update_pelanggan();
             redirect('data/pelanggan');
+        }
+    }
+
+    // edit gang
+    public function hadiah()
+    {
+        // clean form
+        $this->form_validation->set_rules('hadiah', 'Nama Hadiah', 'required');
+        $this->form_validation->set_rules('jumlah_kupon', 'Jumlah kupon', 'required');
+
+        // form validation
+        if ($this->form_validation->run() == FALSE) {
+            $id_hadiah      = $this->uri->segment(3);
+            $data         = [
+                'hadiah'       => $this->model_data_hadiah->get_hadiah_by_id($id_hadiah),
+                'user_loged' => $this->model_data_user->get_user_by_session()
+            ];
+            $this->load->view('header');
+            $this->load->view('sidebar', $data);
+            $this->load->view('edit/view_edit_hadiah', $data);
+            $this->load->view('footer');
+        } else {
+            $this->model_edit_hadiah->edit($this->uri->segment(3));
+            redirect('data/hadiah');
         }
     }
 }

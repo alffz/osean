@@ -12,6 +12,7 @@ class Tambah extends CI_Controller
         $this->load->model('tambah/gang_model');
         $this->load->model('tambah/model_tambah_pelanggan');
         $this->load->model('tambah/model_tambah_no_rumah');
+        $this->load->model('tambah/model_tambah_hadiah');
         $this->load->model('anggota/anggota_Model');
         $this->load->model('data/model_data_gang');
         $this->load->model('data/model_nomor_rumah');
@@ -150,6 +151,31 @@ class Tambah extends CI_Controller
             echo 'berhasil';
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
             redirect('tambah/pelanggan');
+        }
+    }
+
+    // tambah nomor rumah
+    public function hadiah()
+    {
+        // form validation
+        $this->form_validation->set_rules("hadiah", "Nama hadiah", "required", [
+            'required'          => "Kolom nama wajib diisi"
+        ]);
+        $this->form_validation->set_rules("jumlah_kupon", "Jumlah kupon", "required", [
+            'required'          => "Kolom jumlah kupon wajib diisi"
+        ]);
+        $data = [
+            'user_loged' => $this->model_data_user->get_user_by_session(),
+        ];
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('header');
+            $this->load->view('sidebar', $data);
+            $this->load->view('tambah/view_tambah_hadiah.php');
+            $this->load->view('footer');
+        } else {
+            $this->model_tambah_hadiah->insert();
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
+            redirect('data/hadiah');
         }
     }
 }
