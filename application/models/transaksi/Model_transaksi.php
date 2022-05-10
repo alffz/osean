@@ -1,6 +1,6 @@
 <?php
 //class transaksi
-class model_transaski extends CI_Model
+class model_transaksi extends CI_Model
 {
   //constructor
   public function __construct()
