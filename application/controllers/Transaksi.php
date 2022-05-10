@@ -8,7 +8,7 @@ class transaksi extends CI_Controller
   {
     parent::__construct();
     $this->load->library('form_validation');
-    $this->load->model('transaksi/model_transaski');
+    $this->load->model('transaksi/model_transaksi');
     $this->load->model('transaksi/model_trip');
     $this->load->model('transaksi/model_penjualan');
     $this->load->model('data/model_data_anggota_keliling');
